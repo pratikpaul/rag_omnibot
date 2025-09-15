@@ -1,0 +1,104 @@
+## Patient
+PatientID is 4965.
+PatientReference is Patient/4965.
+
+## EOB Summary
+Claim Reference is Claim/5050.
+EOB ID is 5051.
+Created is 2011-11-03T07:37:41-04:00.
+Billable Period Start is 2011-11-03T07:37:41-04:00.
+Billable Period End is 2012-11-03T07:37:41-04:00.
+Status is active.
+Insurer is Medicare.
+Provider is Practitioner/4967.
+Number of services charged for is 2
+Product/Services billed for are Encounter for symptom at Place of Service Inpatient Hospital, Viral sinusitis (disorder) at Place of Service Inpatient Hospital.
+Total Submitted is 129.16 USD.
+Total Deductible is 0.0.
+Total Copay is 0.0.
+Total Coinsurance is 0.0.
+Member Paid (Deductible+Copay+Coinsurance) is 0.0.
+
+## Flattened EOB
+billable Period end is 2012-11-03T07:37:41-04:00.
+billable Period start is 2011-11-03T07:37:41-04:00.
+care Team 0 provider reference is Practitioner/4967.
+care Team 0 role coding 0 code is primary.
+care Team 0 role coding 0 display is Primary Care Practitioner.
+care Team 0 role coding 0 system is http://terminology.hl7.org/CodeSystem/claimcareteamrole.
+care Team 0 sequence is 1.
+claim reference is Claim/5050.
+contained 0 id is referral.
+contained 0 intent is order.
+contained 0 performer 0 reference is Practitioner/4967.
+contained 0 requester reference is Practitioner/4967.
+contained 0 resource Type is Service Request.
+contained 0 status is completed.
+contained 0 subject reference is Patient/4965.
+contained 1 beneficiary reference is Patient/4965.
+contained 1 id is coverage.
+contained 1 resource Type is Coverage.
+contained 1 status is active.
+contained 1 type text is Medicare.
+created is 2011-11-03T07:37:41-04:00.
+diagnosis 0 diagnosis Reference reference is Condition/5049.
+diagnosis 0 sequence is 1.
+diagnosis 0 type 0 coding 0 code is principal.
+diagnosis 0 type 0 coding 0 system is http://terminology.hl7.org/CodeSystem/ex-diagnosistype.
+id is 5051.
+identifier 0 system is https://bluebutton.cms.gov/resources/variables/clm_id.
+identifier 0 value is 73dd827a-879f-46db-aeed-7cdb59b94a50.
+identifier 1 system is https://bluebutton.cms.gov/resources/identifier/claim-group.
+identifier 1 value is 99999999999.
+insurance 0 coverage display is Medicare.
+insurance 0 coverage reference is #coverage.
+insurance 0 focal is True.
+insurer display is Medicare.
+item 0 category coding 0 code is 1.
+item 0 category coding 0 display is Medical care.
+item 0 category coding 0 system is https://bluebutton.cms.gov/resources/variables/line_cms_type_srvc_cd.
+item 0 encounter 0 reference is Encounter/5048.
+item 0 location Codeable Concept coding 0 code is 21.
+item 0 location Codeable Concept coding 0 display is Inpatient Hospital.
+item 0 location Codeable Concept coding 0 system is http://terminology.hl7.org/CodeSystem/ex-serviceplace.
+item 0 product Or Service coding 0 code is 185345009.
+item 0 product Or Service coding 0 display is Encounter for symptom.
+item 0 product Or Service coding 0 system is http://snomed.info/sct.
+item 0 product Or Service text is Encounter for symptom.
+item 0 sequence is 1.
+item 0 serviced Period end is 2011-11-03T07:37:41-04:00.
+item 0 serviced Period start is 2011-11-03T07:22:41-04:00.
+item 1 category coding 0 code is 1.
+item 1 category coding 0 display is Medical care.
+item 1 category coding 0 system is https://bluebutton.cms.gov/resources/variables/line_cms_type_srvc_cd.
+item 1 diagnosis Sequence 0 is 1.
+item 1 location Codeable Concept coding 0 code is 21.
+item 1 location Codeable Concept coding 0 display is Inpatient Hospital.
+item 1 location Codeable Concept coding 0 system is http://terminology.hl7.org/CodeSystem/ex-serviceplace.
+item 1 product Or Service coding 0 code is 444814009.
+item 1 product Or Service coding 0 display is Viral sinusitis (disorder).
+item 1 product Or Service coding 0 system is http://snomed.info/sct.
+item 1 product Or Service text is Viral sinusitis (disorder).
+item 1 sequence is 2.
+item 1 serviced Period end is 2011-11-03T07:37:41-04:00.
+item 1 serviced Period start is 2011-11-03T07:22:41-04:00.
+meta last Updated is 2022-05-25T09:07:00.745+00:00.
+meta source is #JHoZ03e0jjyoOTGI.
+meta version Id is 1.
+outcome is complete.
+patient reference is Patient/4965.
+payment amount currency is USD.
+payment amount value is 0.
+provider reference is Practitioner/4967.
+referral reference is #referral.
+resource Type is Explanation Of Benefit.
+status is active.
+total 0 amount currency is USD.
+total 0 amount value is 129.16.
+total 0 category coding 0 code is submitted.
+total 0 category coding 0 display is Submitted Amount.
+total 0 category coding 0 system is http://terminology.hl7.org/CodeSystem/adjudication.
+total 0 category text is Submitted Amount.
+type coding 0 code is institutional.
+type coding 0 system is http://terminology.hl7.org/CodeSystem/claim-type.
+use is claim.

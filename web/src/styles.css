@@ -1,0 +1,229 @@
+/* Force a light theme for now so text is dark by default */
+:root { color-scheme: light; }
+html, body, #root { height: 100%; margin: 0; }
+
+body { background: #f7f7f8; color: #111; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; overflow: hidden; }
+* { box-sizing: border-box; }
+
+.app { display: grid; grid-template-columns: 260px 1fr; height: 100vh; }
+
+.sidebar { border-right: 1px solid #111827; padding: 12px; overflow-y: auto; color: #f8fafc; background: #e6e6e6; }
+.sidebar h2 { margin: 8px 0 12px; font-size: 14px; opacity: .7; color: #000000; }
+/* Base thread card (keep your existing colors) */
+/* THREAD: glassy white (inactive) */
+.thread {
+  position: relative;
+  margin: 10px 6px;                     /* ← spacing so it’s not congested */
+  padding: 12px 48px 12px 14px;         /* room for the ⋯ button */
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.58);   /* glassy white */
+  color: #0f172a;                       /* slate-900 text */
+  line-height: 1.35;
+  z-index: 0;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.7) inset,
+    0 6px 14px rgba(0,0,0,0.12);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  transform: translateY(0);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+/* Lift on hover (same color) */
+.thread:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,0.18),
+    0 1px 0 rgba(255,255,255,0.75) inset;
+}
+
+/* ACTIVE: glassy blue */
+.thread.active {
+  background: linear-gradient(180deg,
+              rgba(59,130,246,0.92),
+              rgba(37,99,235,0.90));
+  border: 1px solid rgba(147,197,253,0.8);      /* blue-300 edge */
+  color: #fff;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.25) inset,
+    0 8px 18px rgba(30,58,138,0.35);
+}
+
+.thread.active:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 24px rgba(30,58,138,0.45),
+    0 1px 0 rgba(255,255,255,0.3) inset;
+}
+
+/* Ellipsis button stays transparent; color depends on active state */
+.thread { padding-right: 48px; }  /* ensure consistent space for ⋯ */
+
+/* Keep the ⋯ button visible and above the gloss */
+.thread.menu-open { z-index: 2000; }
+.thread:hover { z-index: 5; }
+.thread-menu { z-index: 3000; }
+.dotbtn { z-index: 2500; }
+
+.dotbtn {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;   /* always transparent */
+  cursor: pointer;
+  opacity: 0;               /* was 0.6 */
+  pointer-events: none;                /* hidden until hover */
+  transition: opacity .15s ease;
+}
+/* show only on hover */
+.thread:hover .dotbtn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* the glyph itself */
+.dotbtn .dots {
+  font-size: 18px;
+  font-weight: 900;          /* bold */
+  line-height: 1;
+}
+
+/* colors: black when not active, white when active */
+.thread:not(.active) .dotbtn .dots { color: #000; }   /* bold black */
+.thread.active .dotbtn .dots { color: #fff; }         /* bold white */
+
+/* keep button transparent even on hover/focus */
+.dotbtn:hover,
+.dotbtn:focus,
+.dotbtn:active { background: transparent; }
+
+/* optional: keyboard focus ring without background */
+.dotbtn:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+  outline: 2px solid rgba(59,130,246,.7);
+  border-radius: 6px;
+}
+
+/* The small popup menu under the ellipsis */
+.thread-menu {
+  position: absolute;
+  top: 30px;
+  right: 6px;                      /* keep anchored to the right edge of the card */
+  transform: translateX(10px);     /* nudge a bit toward the right */
+  z-index: 3000;
+
+  min-width: 150px;
+  padding: 6px;
+  border-radius: 10px;
+
+  /* glassy/translucent look */
+  background: rgba(17, 24, 39, 0.70);         /* slate-900 @ ~70% opacity */
+  border: 1px solid rgba(148, 163, 184, 0.35);/* slate-400 border, translucent */
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+
+  box-shadow: 0 12px 28px rgba(0,0,0,.35);
+}
+
+.thread-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: #f9fafb;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.thread-menu button:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* --- Glossy + 3D New Chat button --- */
+.newbtn {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #475569;                    /* slate-600 */
+  background: linear-gradient(180deg, #F5F5F5 0%, #C0C0C0 100%); /* subtle gloss base */
+  color: #000000;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;                              /* keep the gloss inside */
+  box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 2px 6px rgba(0,0,0,.25);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, filter .15s ease;
+  will-change: transform, box-shadow;
+}
+
+/* glossy highlight layer */
+.newbtn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,.18), rgba(255,255,255,.06) 40%, rgba(255,255,255,0) 41%);
+  opacity: .6;
+  pointer-events: none;
+  transition: opacity .15s ease;
+}
+
+/* hover: lift + stronger shadow + brighter gloss */
+.newbtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.06) inset;
+  border-color: #64748b;                         /* slate-500 */
+}
+.newbtn:hover::after { opacity: .8; }
+
+/* active: press down slightly, reduce drop shadow (feels “clicky”) */
+.newbtn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0,0,0,.28) inset, 0 1px 2px rgba(0,0,0,.2);
+}
+
+/* keyboard focus ring without changing background */
+.newbtn:focus-visible {
+  outline: 2px solid rgba(59,130,246,.75);       /* blue ring */
+  outline-offset: 2px;
+}
+
+.main { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
+.meta { font-size: 16px; opacity: .7; margin: 6px 12px; color: #555; }
+
+.messages { flex: 1; overflow-y: auto; padding: 16px; }
+
+/* Make bubble text dark so it’s readable on light backgrounds */
+.msg { max-width: 800px; margin: 0 auto 14px; padding: 12px 14px; border-radius: 12px; white-space: pre-wrap; line-height: 1.45; color: #111; }
+.msg.user { background: #c7d2fe; }
+.msg.assistant { background: #e5e7eb; }
+
+/* Inputs/buttons with explicit text colors */
+.inputbar { flex-shrink: 0; }
+.inputbar { display: flex; gap: 8px; padding: 12px; border-top: 1px solid #ddd; background: #f7f7f8; }
+.inputbar input { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid #ccc; background: #fff; color: #111; }
+.inputbar input::placeholder { color: #888; }
+.inputbar button { padding: 12px 16px; border-radius: 10px; border: 1px solid #ccc; background: #2b7cff; color: #fff; cursor: pointer; }
+.inputbar button:disabled { background: #ddd; color: #888; cursor: not-allowed; }
+.ephemeral {
+  max-width: 800px;
+  margin: 0 auto 10px;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
