@@ -54,7 +54,7 @@ SEEDS_IN_SCOPE: List[str] = [
     "EOC section for PCP rules.",
     "OOPM remaining.",
     "PA requirements for imaging.",
-    # Spanish variants (a few)
+    # Spanish variants
     "¿Cuál es mi deducible?",
     "¿El médico está dentro de la red?",
     "Muestra mi último reclamo y cuánto debo.",
@@ -139,7 +139,7 @@ class IntentClassifier:
         s_md  = max(sims_md)  if sims_md  else 0.0
         s_off = max(sims_off) if sims_off else 0.0
 
-        # Pick the strongest class if it clears its threshold
+        # Picking the strongest class if it clears its threshold
         if s_md >= self.cfg.th_medical and s_md >= s_in and s_md >= s_off:
             label: Label = "medical"
         elif s_in >= self.cfg.th_in_scope and s_in >= s_md and s_in >= s_off:
