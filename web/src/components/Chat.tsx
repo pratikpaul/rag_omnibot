@@ -23,7 +23,6 @@ export default function Chat() {
       onError: () => setBusy(false),
     });
 
-    // NOTE: if you add a "Stop" button later, call close()
   }
 
   return (
