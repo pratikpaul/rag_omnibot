@@ -186,7 +186,7 @@ async def _astream_agent(
     prefix: str = ""
 ) -> str:
     pieces: List[str] = []
-    # If context is empty/None, the agent will do internal retrieval per your protocol.
+    # If context is empty/None, the agent will do internal retrieval per my protocol.
     async for chunk in agent.astream_answer(question, history_messages, context=context if context is not None else None):
         if prefix:
             # print the prefix once for readability
@@ -241,7 +241,7 @@ async def _astream_agent(
 #
 #     return {"messages": [AIMessage(content=combined)], "elapsed": time.perf_counter() - t0}
 
-# replace your combine_node with this generator version
+# 
 
 # BEFORE: async def combine_node(state: AgentState) -> AgentState:
 # AFTER  : async def combine_node(state: AgentState):
@@ -335,7 +335,7 @@ async def combine_node(state: AgentState):
     results = {name: [] for name, _ in selected}
 
     async def run_agent(name: str, agent: AnswerAgent):
-        # 1) retrieval (can be slow) — run in thread so we don't block the event loop
+        # 1) retrieval — run in thread so we don't block the event loop
         loop = asyncio.get_running_loop()
         ctx, cites = await loop.run_in_executor(None, lambda: agent.retrieve(q))
 
@@ -368,7 +368,7 @@ async def combine_node(state: AgentState):
         elif k == "done":
             done += 1
 
-    # Final message (same composition you had)
+    # Final message
     if route == "both":
         combined = (
             f"**From PDF:**\n{''.join(results['pdf'])}\n\n"
