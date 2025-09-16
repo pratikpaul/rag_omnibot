@@ -7,7 +7,7 @@ from langchain_openai import OpenAIEmbeddings
 
 Label = Literal["in_scope", "medical", "off_topic"]
 
-# ---- Seeds (edit/tune anytime, no code changes elsewhere) ----
+# ---- Seeds  ----
 SEEDS_IN_SCOPE: List[str] = [
     # Benefits / cost share
     "How much of my deductible have I met?",
@@ -114,7 +114,6 @@ class IntentConfig:
     th_in_scope: float = float(os.getenv("INTENT_TH_IN_SCOPE", "0.30"))
     th_medical: float = float(os.getenv("INTENT_TH_MEDICAL", "0.30"))
     th_off_topic: float = float(os.getenv("INTENT_TH_OFF_TOPIC", "0.30"))
-    # You can add: use_llm_fallback: bool = False
 
 def _cos_sim(a: np.ndarray, b: np.ndarray) -> float:
     na = np.linalg.norm(a); nb = np.linalg.norm(b)
