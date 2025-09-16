@@ -40,7 +40,7 @@ app.add_middleware(
 @dataclass
 class MemberProfile:
     name: str
-    first: str  # handy for natural tone
+    first: str  
 
 _GREET = re.compile(r"^\s*(hi|hello|hey|greetings|good (morning|afternoon|evening))\b", re.I)
 
@@ -100,7 +100,7 @@ async def chat(req: ChatIn):
     answer = next((m.content for m in reversed(msgs) if isinstance(m, AIMessage)), "")
     return {"thread_id": tid, "answer": answer}
 
-# ---------- STREAMING: direct from agents (ChatGPT-style typing) ----------
+# ---------- STREAMING: direct from agents ----------
 @app.get("/chat/stream")
 async def chat_stream_get(text: str = Query(...), thread_id: Optional[str] = Query(None)):
     return await _chat_stream_direct(text=text, thread_id=thread_id)
@@ -193,7 +193,7 @@ async def _chat_stream_direct(*, text: str, thread_id: Optional[str]):
     claims_agent: AnswerAgent = app.state.claims_agent
     intent: IntentClassifier = app.state.intent
 
-    # --- Member "memory" (use app.state.member if you set it at startup; else default to Maria) ---
+    # --- Member "memory" (use app.state.member if set at startup; else default to Maria) ---
     member = getattr(app.state, "member", SimpleNamespace(name="Maria Martinez", first="Maria"))
 
     GREET_RE = re.compile(r"^\s*(hi|hello|hey|greetings|good\s+(morning|afternoon|evening))\b", re.I)
@@ -247,7 +247,7 @@ async def _chat_stream_direct(*, text: str, thread_id: Optional[str]):
 
         async def run_agent(name: str, agent: AnswerAgent):
             loop = asyncio.get_running_loop()
-            # retrieval (may be slow): offload to thread
+            # retrieval: offload to thread
             ctx, cites = await loop.run_in_executor(None, lambda: agent.retrieve(text))
             # inject personalization AFTER retrieval so search isn't skewed
             ctx = _inject_profile(ctx)
@@ -271,7 +271,7 @@ async def _chat_stream_direct(*, text: str, thread_id: Optional[str]):
             elif ev["kind"] == "done":
                 done += 1
 
-        # ---- 5) Final marker (answer text is already streamed via tokens) ----
+        # ---- 5) Final marker  ----
         yield _sse("final", {"thread_id": tid, "answer": ""})
 
     headers = {
