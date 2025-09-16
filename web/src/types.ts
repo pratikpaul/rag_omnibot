@@ -8,7 +8,7 @@ export interface Message {
 
 export interface ThreadData {
   id: string;
-  title: string;            // first user message (trimmed)
+  title: string;
   createdAt: number;
   updatedAt: number;
   messages: Message[];
