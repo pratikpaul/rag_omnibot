@@ -153,7 +153,7 @@ class ClaimsAssist(AnswerAgent):
 
     # ---- AnswerAgent: retrieve ----
     def retrieve(self, question: str) -> tuple[str, List[Dict[str, Any]]]:
-        # sync API required by your protocol
+        # sync API required by protocol
         docs = self.retriever.invoke(question)
         context = self._format_docs(docs)
         citations = []
