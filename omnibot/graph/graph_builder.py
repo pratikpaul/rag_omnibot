@@ -297,7 +297,7 @@ async def _astream_agent(
 #         elif ev.get("done"):
 #             done += 1
 #
-#     # Build final message exactly like your working code
+#     # Build final message 
 #     if route == "both" and len(tasks) == 2:
 #         combined = f"**From PDF:**\n{''.join(results['pdf'])}\n\n**From Claims:**\n{''.join(results['claims'])}"
 #     elif route == "pdf":
