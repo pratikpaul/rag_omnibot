@@ -1,4 +1,4 @@
-/* Force a light theme for now so text is dark by default */
+/* Force a light theme */
 :root { color-scheme: light; }
 html, body, #root { height: 100%; margin: 0; }
 
@@ -9,16 +9,15 @@ body { background: #f7f7f8; color: #111; font-family: system-ui, -apple-system, 
 
 .sidebar { border-right: 1px solid #111827; padding: 12px; overflow-y: auto; color: #f8fafc; background: #e6e6e6; }
 .sidebar h2 { margin: 8px 0 12px; font-size: 14px; opacity: .7; color: #000000; }
-/* Base thread card (keep your existing colors) */
-/* THREAD: glassy white (inactive) */
+
 .thread {
   position: relative;
-  margin: 10px 6px;                     /* ← spacing so it’s not congested */
-  padding: 12px 48px 12px 14px;         /* room for the ⋯ button */
+  margin: 10px 6px;                     
+  padding: 12px 48px 12px 14px;         
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.65);
-  background: rgba(255,255,255,0.58);   /* glassy white */
-  color: #0f172a;                       /* slate-900 text */
+  background: rgba(255,255,255,0.58);  
+  color: #0f172a;           
   line-height: 1.35;
   z-index: 0;
   box-shadow:
@@ -30,7 +29,7 @@ body { background: #f7f7f8; color: #111; font-family: system-ui, -apple-system, 
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
 
-/* Lift on hover (same color) */
+/* Lift on hover */
 .thread:hover {
   transform: translateY(-2px);
   box-shadow:
@@ -43,7 +42,7 @@ body { background: #f7f7f8; color: #111; font-family: system-ui, -apple-system, 
   background: linear-gradient(180deg,
               rgba(59,130,246,0.92),
               rgba(37,99,235,0.90));
-  border: 1px solid rgba(147,197,253,0.8);      /* blue-300 edge */
+  border: 1px solid rgba(147,197,253,0.8);
   color: #fff;
   box-shadow:
     0 1px 0 rgba(255,255,255,0.25) inset,
@@ -81,8 +80,8 @@ body { background: #f7f7f8; color: #111; font-family: system-ui, -apple-system, 
   border: none;
   background: transparent;   /* always transparent */
   cursor: pointer;
-  opacity: 0;               /* was 0.6 */
-  pointer-events: none;                /* hidden until hover */
+  opacity: 0;           
+  pointer-events: none;                /* I did not know this. hidden until hover */
   transition: opacity .15s ease;
 }
 /* show only on hover */
@@ -119,8 +118,8 @@ body { background: #f7f7f8; color: #111; font-family: system-ui, -apple-system, 
 .thread-menu {
   position: absolute;
   top: 30px;
-  right: 6px;                      /* keep anchored to the right edge of the card */
-  transform: translateX(10px);     /* nudge a bit toward the right */
+  right: 6px;                      
+  transform: translateX(10px);     
   z-index: 3000;
 
   min-width: 150px;
@@ -128,8 +127,8 @@ body { background: #f7f7f8; color: #111; font-family: system-ui, -apple-system, 
   border-radius: 10px;
 
   /* glassy/translucent look */
-  background: rgba(17, 24, 39, 0.70);         /* slate-900 @ ~70% opacity */
-  border: 1px solid rgba(148, 163, 184, 0.35);/* slate-400 border, translucent */
+  background: rgba(17, 24, 39, 0.70);         
+  border: 1px solid rgba(148, 163, 184, 0.35);
   backdrop-filter: blur(10px) saturate(150%);
   -webkit-backdrop-filter: blur(10px) saturate(150%);
 
@@ -158,12 +157,12 @@ body { background: #f7f7f8; color: #111; font-family: system-ui, -apple-system, 
   padding: 10px 12px;
   margin-bottom: 12px;
   border-radius: 10px;
-  border: 1px solid #475569;                    /* slate-600 */
-  background: linear-gradient(180deg, #F5F5F5 0%, #C0C0C0 100%); /* subtle gloss base */
+  border: 1px solid #475569;                  
+  background: linear-gradient(180deg, #F5F5F5 0%, #C0C0C0 100%); 
   color: #000000;
   cursor: pointer;
   position: relative;
-  overflow: hidden;                              /* keep the gloss inside */
+  overflow: hidden;                             
   box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 2px 6px rgba(0,0,0,.25);
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, filter .15s ease;
   will-change: transform, box-shadow;
@@ -198,7 +197,7 @@ body { background: #f7f7f8; color: #111; font-family: system-ui, -apple-system, 
 
 /* keyboard focus ring without changing background */
 .newbtn:focus-visible {
-  outline: 2px solid rgba(59,130,246,.75);       /* blue ring */
+  outline: 2px solid rgba(59,130,246,.75);       
   outline-offset: 2px;
 }
 
