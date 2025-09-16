@@ -57,7 +57,7 @@ body { background: #f7f7f8; color: #111; font-family: system-ui, -apple-system, 
 }
 
 /* Ellipsis button stays transparent; color depends on active state */
-.thread { padding-right: 48px; }  /* ensure consistent space for ⋯ */
+.thread { padding-right: 48px; }  
 
 /* Keep the ⋯ button visible and above the gloss */
 .thread.menu-open { z-index: 2000; }
