@@ -7,7 +7,7 @@ from typing import Dict, Any, List, Optional
 from omnibot.config.constants import RAW_FHIR_GLOB, FLAT_DIR, WRITE_JSONL
 # from collections import OrderedDict
 
-# ------THIS CODE IS NOT WORKING. NEED TO GET HITASHU ON THIS
+# ------THIS CODE IS NOT WORKING. NEED TO WORK ON THIS
 
 # ------------ camelCase → spaced ------------
 camel_pattern1 = re.compile(r'(.)([A-Z][a-z]+)')
