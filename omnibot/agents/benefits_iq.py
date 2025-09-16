@@ -54,7 +54,7 @@ class BenefitsIQ(AnswerAgent):
         # self.llm = OllamaLLM(model=model_name, base_url=base_url, **kwargs)
         self.prompt = ChatPromptTemplate.from_template(BENEFITS_TEMPLATE)
         self.parser = StrOutputParser()
-        self.chain = self.prompt | self.llm | self.parser  # supports .stream(...); some builds also support .astream(...)
+        self.chain = self.prompt | self.llm | self.parser
 
     # --------- Protocol: Retrieval ----------
     def retrieve(self, question: str) -> tuple[str, List[Dict[str, Any]]]:
