@@ -64,7 +64,7 @@ export default function App() {
   const [busy, setBusy] = useState(false);
   const [menuFor, setMenuFor] = useState<string | null>(null);
   const closeRef = useRef<() => void>();
-  const messagesRef = useRef<HTMLDivElement>(null);   // <-- define the ref here
+  const messagesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => { saveThreads(threads); }, [threads]);
 
@@ -77,7 +77,7 @@ export default function App() {
         messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
       }
     });
-  }, [activeId, threads, threads.length, threads[0]?.messages?.length]); // simple but robust deps
+  }, [activeId, threads, threads.length, threads[0]?.messages?.length]); 
 
   useEffect(() => {
       const onDocClick = () => setMenuFor(null);
@@ -195,7 +195,7 @@ export default function App() {
         if (label) setEphemeral(label);
       },
       onToken: (_agent, tok) => {
-        if (!gotTokens) setEphemeral(null); // hide "thinking…" at first token
+        if (!gotTokens) setEphemeral(null); // hiding "thinking…" at first token
         gotTokens = true;
         appendAssistantToken(tok);
       },
@@ -232,7 +232,7 @@ export default function App() {
           >
             {t.title}
 
-            {/* ⋯ button (unchanged) */}
+            {/* ⋯ button */}
             <button
               className="dotbtn"
               title="More"
@@ -246,7 +246,7 @@ export default function App() {
               <span className="dots">⋯</span>
             </button>
 
-            {/* popup menu (unchanged) */}
+            {/* popup menu */}
             {menuFor === t.id && (
               <div
                 className="thread-menu"
