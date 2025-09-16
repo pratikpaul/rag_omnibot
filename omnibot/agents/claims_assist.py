@@ -173,7 +173,7 @@ class ClaimsAssist(AnswerAgent):
         history_messages: Sequence[BaseMessage],
         context: Optional[str] = None,
     ) -> AsyncIterator[str]:
-        # We ignore history for now, but keep the arg for API parity.
+        # We ignore history for now, but keepING the arg for API parity.
         if context is None:
             # Let the chain handle retrieval internally
             async for chunk in self.rag_chain.astream(question):
