@@ -52,7 +52,7 @@ def inject_profile(ctx: str, member: MemberProfile) -> str:
 # ---------- Startup ----------
 @app.on_event("startup")
 async def _startup():
-    # compile graph for /chat (one-shot) and for future use
+    # compiling graph for /chat (one-shot) and for future use
     graph, conn = await build_graph_async()
     app.state.graph = graph
     app.state.conn = conn
@@ -204,7 +204,7 @@ async def _chat_stream_direct(*, text: str, thread_id: Optional[str]):
         return f"{header}{ctx}" if ctx else header
 
     async def gen() -> AsyncIterator[bytes]:
-        # ---- 0) Greeting short-circuit (fast + welcoming, typed out) ----
+        # ---- 0) Greeting short-circuit ----
         if GREET_RE.match(text or ""):
             yield _sse("route", {"thread_id": tid, "route": "greet"})
             msg = (
