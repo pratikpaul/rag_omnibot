@@ -147,7 +147,7 @@ class BenefitsIQ(AnswerAgent):
                 yield tok
             return
 
-        # ✅ Proper fallback: stream in a background thread and forward to async generator
+        # Proper fallback: stream in a background thread and forward to async generator
         loop = asyncio.get_running_loop()
         queue: asyncio.Queue[Optional[str]] = asyncio.Queue()
 
